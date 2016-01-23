@@ -1,6 +1,6 @@
 # World Service
 
-This is a super awesome microservice that uses some of cool stuff like Spring Boot & Gradle.
+This is a super awesome microservice that uses some cool stuff like Spring Boot & Gradle.
 
 It's a simple microservice that provides access to some country data.
 
