@@ -12,8 +12,8 @@ To get runnning:
 4. Build app with ./gradlew build
 5. Run app with java -jar build/libs/world-service-0.0.1-SNAPSHOT.jar
 
-And BOOM the app should be running on port 80.
+And BOOM the app should be running on port 8080.
 
-Send a Rest request like this: http://192.168.1.15:8080/greeting?name=Roger
+Send a Rest request with your browser like this: http://192.168.1.15:8080/greeting?name=Roger
 
 It will echo your name back with a random country in JSON. Enjoy! :)
