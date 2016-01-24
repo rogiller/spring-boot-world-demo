@@ -8,7 +8,7 @@ To get runnning:
 
 1. Install PostgreSQL (I'm running 9.3)
 2. Setup user "postgres" with password "true"
-3. Import the world.sql file in the root of repo into a database called "world"
+3. Import the world.sql file in the root of repo into a database called "world" [e.g. "psql -U postgres world < world.sql" ]
 4. Build app with ./gradlew build
 5. Run app with java -jar build/libs/world-service-0.0.1-SNAPSHOT.jar
 
