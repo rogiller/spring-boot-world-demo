@@ -2,6 +2,8 @@ package com.world.repo;
 
 import com.world.domain.Country;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,7 @@ public class CountryRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Cacheable("countries")
     public List<Country> findCountries(){
 
         List<Country> countries = jdbcTemplate.query("select code, name from country order by name", new RowMapper<Country>() {
@@ -29,6 +32,8 @@ public class CountryRepository {
                 return toCountry(rs);
             }
         });
+
+        //simulateSlowService();
 
         return countries;
     }
@@ -40,6 +45,22 @@ public class CountryRepository {
         country.setName(rs.getString("name"));
 
         return country;
+    }
+
+    @CacheEvict(value = "countries", allEntries = true)
+    public void updateCountry(Country country){
+
+        System.out.println("Simulating countries cache eviction.");
+
+    }
+
+    private void simulateSlowService() {
+        try {
+            long time = 5000L;
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
 }

@@ -28,7 +28,12 @@ public class WorldController {
 
 
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name,
+                             @RequestParam(value="clearCache", defaultValue="false") String clearCache) {
+
+        if("true".equalsIgnoreCase(clearCache)){
+            countryRepo.updateCountry(null);
+        }
 
         List<Country> countries = countryRepo.findCountries();
 
